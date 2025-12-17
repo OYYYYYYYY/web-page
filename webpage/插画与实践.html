@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>插画与应用详情展示</title>
+    <style>
+        /* 重置所有默认边距，消除留白 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* html/body 占满屏幕，允许垂直滚动，禁止水平滚动 */
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden; /* 禁止左右滑动，避免长图宽度溢出 */
+            overflow-y: auto; /* 允许上下滑动查看长图 */
+            scroll-behavior: smooth; /* 滑动更丝滑（可选） */
+        }
+        /* 长图核心样式：宽度100%占满屏幕，高度自适应 */
+        .fullscreen-long-img {
+            width: 100vw; /* 宽度=屏幕宽度100% */
+            height: auto; /* 高度随宽度等比缩放，长图自动延伸 */
+            display: block; /* 消除图片底部默认留白 */
+            object-fit: cover; /* 边缘轻微裁剪保证宽度满屏，优先显示中心 */
+        }
+        /* 返回图标按钮：右下角固定定位，圆形图标样式 */
+        .back-icon-btn {
+            position: fixed;
+            bottom: 20px; /* 距离底部20px */
+            right: 20px; /* 距离右侧20px（右下角核心定位） */
+            width: 48px; /* 图标按钮大小 */
+            height: 48px;
+            background-color: rgba(0, 0, 0, 0.6); /* 半透明黑，适配长图 */
+            color: white; /* 图标颜色 */
+            border: none;
+            border-radius: 50%; /* 圆形按钮 */
+            cursor: pointer;
+            font-size: 20px; /* 图标大小 */
+            z-index: 999; /* 保证在最上层 */
+            transition: all 0.2s ease; /* 悬浮动画 */
+            display: flex;
+            align-items: center;
+            justify-content: center; /* 图标居中 */
+        }
+        /* 悬浮效果：加深背景+轻微放大，提升交互感 */
+        .back-icon-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+        /* 可选：禁用按钮点击时的默认高亮 */
+        .back-icon-btn:focus {
+            outline: none;
+        }
+    </style>
+    <!-- 引入字体图标库（用免费的Font Awesome，无需自己做图标） -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 返回图标按钮：用←箭头图标，右下角定位 -->
+    <button class="back-icon-btn" onclick="window.history.back()" title="返回作品列表">
+        <i class="fas fa-arrow-left"></i> <!-- 左箭头图标，可替换成其他样式 -->
+    </button>
+    
+    <!-- 长图：宽度100%占屏，高度自适应，可上下滑动 -->
+    <img src="image/手绘实践-18.png" alt="长图展示" class="fullscreen-long-img">
+</body>
+</html>

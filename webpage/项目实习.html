@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>详情展示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            /* 去掉height: 100%，避免限制body高度导致图片偏移 */
+            overflow-x: hidden;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        /* 核心修改：取消object-fit: cover，改用width:100%+height:auto，从顶部开始显示 */
+        .fullscreen-long-img {
+            width: 100vw; /* 宽度满屏 */
+            height: auto; /* 高度自适应，不裁剪 */
+            display: block; /* 消除底部留白 */
+            /* 关键：让图片从顶部开始显示，无偏移 */
+            object-fit: unset; 
+            object-position: top left;
+        }
+        /* 返回图标按钮（保留原有样式） */
+        .back-icon-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 999;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-icon-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <button class="back-icon-btn" onclick="window.history.back()" title="返回作品列表">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+    <!-- 长图：从顶部开始显示，无空白 -->
+    <img src="image/项目中车.jpg" alt="长图展示" class="fullscreen-long-img">
+</body>
+</html>
